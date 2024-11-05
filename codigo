@@ -1,0 +1,32 @@
+intervalos = [280, 700, 1500] 
+percentuais = [20, 15, 10, 5]  
+
+while True:
+    salario_atual = float(input("Digite o salário atual do colaborador (ou 0 para sair): R$ "))
+    
+    if salario_atual == 0:
+        print("Finalizando o programa...")
+        break
+
+    percentual_aumento = percentuais[-1]  
+    for i in range(len(intervalos)):
+        if salario_atual <= intervalos[i]:
+            percentual_aumento = percentuais[i]
+            break 
+
+    valor_aumento = salario_atual * (percentual_aumento / 100)
+    novo_salario = salario_atual + valor_aumento
+
+    inflacao = 3.8
+    valor_aumento_real = valor_aumento * (1 - inflacao / 100)
+
+    print("\nSalário antes do reajuste: R$ {:.2f}".format(salario_atual))
+    print("Percentual de aumento aplicado: {}%".format(percentual_aumento))
+    print("Valor do aumento: R$ {:.2f}".format(valor_aumento))
+    print("Novo salário, após o aumento: R$ {:.2f}".format(novo_salario))
+    print("Valor do aumento real (descontado a inflação): R$ {:.2f}\n".format(valor_aumento_real))
+    
+    continuar = input("Deseja calcular o reajuste para outro colaborador? (s/n): ").lower()
+    if continuar != 's':
+        print("Finalizando o programa...")
+        break
